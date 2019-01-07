@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'btn-add' => 'Thêm',
+    'th-id' => 'ID',
+    'th-name' => 'Tên',
+    'th-email' => 'Email',
+    'th-role' => 'Vai Trò',
+    'th-phone' => 'SĐT',
+    'th-address' => 'Địa Chỉ',
+    'th-function' => 'Chức Năng',
+    'btn-edit' => 'Sửa',
+    'btn-del' => 'Xóa',
+    'modal-title' => 'Thêm Người Dùng',
+    'modal-title-edit' => 'Sửa Thông Tin',
+    'lb-email' => 'Email',
+    'lb-password' => 'Mật Khẩu',
+    'lb-name' => 'Tên',
+    'lb-address' => 'Địa Chỉ',
+    'lb-phone' => 'SĐT',
+    'lb-gender' => 'Giới Tính',
+    'lb-dob' => 'Ngày Sinh',
+    'select-male' => 'Nam',
+    'select-female' => 'Nữ',
+    'role-mod' => 'Người Dùng',
+    'role-admin' => 'Admin',
+];
