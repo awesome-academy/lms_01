@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Authen;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Models\Category;
+namespace App\Http\Controllers;
 
-class Login extends Controller
+use App\Models\Comment;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class Comments extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,7 @@ class Login extends Controller
      */
     public function index()
     {
-        $categories = Category::with('childs')->where('parent_id', config('setting.parent_id'))->get();
-
-        return view('user.login', compact('categories'));
+        //
     }
 
     /**
@@ -28,9 +25,7 @@ class Login extends Controller
      */
     public function create()
     {
-        Auth::logout();
-
-        return redirect()->route('home.index');
+        //
     }
 
     /**
@@ -41,18 +36,17 @@ class Login extends Controller
      */
     public function store(Request $request)
     {
-        $email = $request->log_username;
-        $password = $request->log_password;
-        if( Auth::attempt(['email' => $email, 'password' =>$password])) {
-            if(auth()->user()->role === config('setting.admin')) {
+        try{
+            $comment = new Comment;
+            $comment->user_id = Auth::user()->id;
+            $comment->book_id = $request->book_id;
+            $comment->content = $request->message;
+            $comment->save();
 
-                return redirect(route('admin.index'));
-            }
+            return redirect(route('detail.show', $request->book_id))->with('success', trans('public.message-comment'));
+        } catch (Exception $exception) {
 
-            return redirect(route('home.index'));
-        } else {
-
-            return redirect()->back()->with('fail', trans('auth.message-fail'))->withInput();
+            return redirect(route('detail.show', $request->book_id))->with('fail', trans('public.message-comment-fail'));
         }
     }
 

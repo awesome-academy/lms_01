@@ -3,7 +3,6 @@
     <div class="container product_section_container">
         <div class="row">
             <div class="col product_section clearfix">
-                <!-- Breadcrumbs -->
                 <div class="breadcrumbs d-flex flex-row align-items-center">
                     <ul>
                         <li><a href="index.html">@lang('public.nav-home')</a></li>
@@ -14,7 +13,6 @@
                         @endforeach
                     </ul>
                 </div>
-                <!-- Sidebar -->
                 <div class="sidebar">
                     <div class="sidebar_section">
                         <div class="sidebar_title">
@@ -37,23 +35,25 @@
                             <div class="col">
                                 <div class="product-grid">
                                     @foreach($books as $book)
-                                    <div class="product-item {{$book->category_id}}">
-                                        <div class="product discount product_filter">
-                                            <div class="product_image">
-                                                <img src="/assets/images/{{$book->picture}}" alt="">
+                                        <div class="product-item {{$book->category_id}}">
+                                            <div class="product discount product_filter">
+                                                <div class="product_image">
+                                                    <img class="mystyle" src="/assets/images/{{$book->picture}}" >
+                                                </div>
+                                                <div class="product_info">
+                                                    <h6 class="product_name"><a href="{{ route('detail.show', $book->id) }}">{{$book->title}}</a></h6>
+                                                </div>
                                             </div>
                                             <div class="favorite favorite_left"></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="{{ route('detail.show', $book->id) }}">{{$book->title}}</a></h6>
-                                            </div>
+                                            <div class="red_button add_to_cart_button"><a href="{{ route('detail.show', $book->id) }}">@lang('public.btn-borrow')</a></div>
                                         </div>
-                                        <div class="red_button add_to_cart_button"><a href="{{ route('detail.show', $book->id) }}">@lang('public.slider-button')</a></div>
-                                    </div>
                                     @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 @endsection

@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     protected $table = "comments";
+    protected $primaryKey = "id";
+    public $timestamps = true;
+    protected $fillable = [
+        'user_id',
+        'book_id',
+        'content',
+        'avg_rate',
+        'status',
+    ];
 
     public function rates()
     {

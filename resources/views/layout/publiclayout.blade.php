@@ -72,11 +72,11 @@
                 <div class="row">
                     <div class="col-lg-12 text-right">
                         <div class="logo_container">
-                            <a href="#">@lang('public.logo')</a>
+                            <a href="/home">@lang('public.logo')</a>
                         </div>
                         <nav class="navbar">
                             <ul class="navbar_menu">
-                                <li><a href="#">@lang('public.nav-home')</a></li>
+                                <li><a href="/home">@lang('public.nav-home')</a></li>
                                 <li>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">@lang('public.nav-category')
                                         <span class="caret"></span>
@@ -96,10 +96,10 @@
                             </ul>
                             <ul class="navbar_user">
                                 <li>
-                                    <div class="searchbar">
-                                        <input class="search_input" type="text" name="" placeholder="Search...">
+                                    {!! Form::open(['method' => 'POST', 'route' =>'home.store', 'class' => 'searchbar']) !!}
                                         <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
-                                    </div>
+                                        {!! Form::text('search', '', ['class' => 'search_input', 'placeholder' => trans('public.search-bar')]) !!}
+                                    {!! Form::close() !!}
                                 </li>
                             </ul>
                             <div class="hamburger_container">

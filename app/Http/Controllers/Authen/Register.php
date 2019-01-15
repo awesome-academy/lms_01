@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Category;
 
 class Register extends Controller
 {
@@ -16,7 +17,9 @@ class Register extends Controller
      */
     public function index()
     {
-        return view('user.register');
+        $categories = Category::with('childs')->where('parent_id', config('setting.parent_id'))->get();
+
+        return view('user.register', compact('categories'));
     }
 
     /**
