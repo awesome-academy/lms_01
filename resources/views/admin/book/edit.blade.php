@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal1">
+<div class="modal fade" id="myModalBook">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
