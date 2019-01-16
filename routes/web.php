@@ -19,6 +19,11 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'checkAdminLogin'], function
     Route::resource('user', 'admin\Users' );
     Route::post('user/update', 'admin\Users@update')->name('user.edit');
     Route::resource('search', 'admin\Search');
+    Route::resource('comment', 'admin\Comments');
+    Route::post('/comment/update-status',[
+        'uses' => 'admin\Comments@updateStatus',
+    ]);
+
 });
 
 Route::group(['prefix' => '/'], function (){
