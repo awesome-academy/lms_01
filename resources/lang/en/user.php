@@ -2,7 +2,7 @@
 
 return [
     'btn-add' => 'ADD',
-    'th-id' => 'ID',
+    'th-id' => 'STT',
     'th-name' => 'Name',
     'th-email' => 'Email',
     'th-role' => 'Role',
@@ -25,4 +25,5 @@ return [
     'role-mod' => 'User',
     'role-admin' => 'Admin',
     'export-to-excel' => 'Export to Excel',
+    'btn-close' => 'Close'
 ];

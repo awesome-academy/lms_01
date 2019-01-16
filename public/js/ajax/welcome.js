@@ -2,7 +2,7 @@ $(document).ready(function() {
     var unique_id = $.gritter.add({
         title: 'Welcome to Admin!',
         text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo.',
-        image: 'img/ui-sam.jpg',
+        image: '/assets/images/admin.jpg',
         sticky: false,
         time: 8000,
         class_name: 'my-sticky-class'

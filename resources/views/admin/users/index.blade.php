@@ -15,7 +15,7 @@
                         </div>
                         <div class="col-sm-6" >
                             {!! Form::open(['method' => 'POST', 'route' =>'search.store']) !!}
-                            {!! Form::text('search', '', ['class' => 'form-control input-sm', 'placeholder' => 'Enter Search']) !!}
+                                {!! Form::text('search', '', ['class' => 'form-control input-sm', 'placeholder' => 'Enter Search']) !!}
                             {!! Form::close() !!}
                         </div>
                     </div>

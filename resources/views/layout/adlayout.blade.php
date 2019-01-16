@@ -6,6 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="Dashboard">
         <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>@lang('admin.title')</title>
         <link href="img/favicon.png" rel="icon">
         <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -34,7 +35,7 @@
         <aside>
             <div id="sidebar" class="nav-collapse ">
                 <ul class="sidebar-menu" id="nav-accordion">
-                    <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+                    <p class="centered"><a href="profile.html"><img src="/assets/images/admin.jpg" class="img-circle" width="80"></a></p>
                     <h5 class="centered">{{Auth::user()->name}}</h5>
                     <li class="mt">
                         <a class="active" href="index.html">
@@ -108,5 +109,6 @@
     {{ Html::script(asset('js/lib/zabuto_calendar.js')) }}
     {{ Html::script(asset('js/ajax/welcome.js')) }}
     {{ Html::script(asset('js/ajax/edituser.js')) }}
+    {{ Html::script(asset('js/ajax/adminScript.js')) }}
     </body>
 </html>
