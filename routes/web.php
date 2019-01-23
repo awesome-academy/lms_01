@@ -35,5 +35,7 @@ Route::group(['prefix' => '/'], function (){
     Route::resource('comment', 'Comments')->middleware('checkLogin');
     Route::resource('login', 'Authen\Login');
     Route::resource('register', 'Authen\Register');
+    Route::resource('cart', 'Carts')->middleware('checkLogin');
+    Route::post('cart/delete', 'Carts@delItem')->name('cart.del');
     //Route::post('home/register', 'admin\Users@update')->name('user.edit');
 });

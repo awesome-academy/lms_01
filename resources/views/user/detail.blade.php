@@ -55,7 +55,8 @@
                             <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                         </ul>
                     </div>
-                    {!! Form::open(['method' => 'POST', 'route' => ['detail.add', $books->id] ]) !!}
+                    {!! Form::open(['method'=>'PUT', 'route'=>['cart.update', $books->id]]) !!}
+                        {!! Form::hidden('book_id', $books->id) !!}
                         {!! Form::submit(trans('public.btn-borrow'), ['class' => 'btn btn-success btn-md']) !!}
                     {!! Form::close() !!}
                 </div>
@@ -68,26 +69,28 @@
                 <h4>@lang('public.lb-comment') ({!! $comments->count() !!})</h4>
             </div>
             @foreach($comments as $comment)
-            <div class="user_review_container d-flex flex-column flex-sm-row">
-                <div class="user">
-                    <div class="user_pic"></div>
-                    <div class="user_rating">
-                        <ul class="star_rating">
-                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                        </ul>
+                @if($comments->status == config('setting.status_1'))
+                    <div class="user_review_container d-flex flex-column flex-sm-row">
+                        <div class="user">
+                            <div class="user_pic"></div>
+                            <div class="user_rating">
+                                <ul class="star_rating">
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="review">
+                            <div class="review_date">{!! $comment->created_at !!}</div>
+                            <div class="user_name">{!! $comment->name !!}</div>
+                            <p>{!! $comment->content !!}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="review">
-                    <div class="review_date">{!! $comment->created_at !!}</div>
-                    <div class="user_name">{!! $comment->name !!}</div>
-                    <p>{!! $comment->content !!}</p>
-                </div>
-            </div>
-                @endforeach
+                @endif
+            @endforeach
         </div>
 
         <div class="col-lg-6 add_review_col">

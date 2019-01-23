@@ -54,7 +54,7 @@
                 <div class="col text-center">
                     <div class="new_arrivals_sorting">
                         <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
+                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">@lang('public.all')</li>
                             @foreach($cats as $cat)
                             <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".{!! $cat->id !!}">{!! $cat->name !!}</li>
                             @endforeach
@@ -78,7 +78,11 @@
                                     </div>
                                 </div>
                                 <div class="favorite favorite_left"></div>
-                                <div class="red_button add_to_cart_button"><a href="{{ route('detail.show', $book->id) }}">@lang('public.btn-borrow')</a></div>
+                                {!! Form::open(['method'=>'PUT', 'route'=>['cart.update', $book->id], 'class' => 'red_button add_to_cart_button']) !!}
+                                    {!! Form::hidden('book_id', $book->id) !!}
+                                    {!! Form::hidden('_token', csrf_token()) !!}
+                                    {{ Form::submit(trans('public.btn-borrow', ['class' => 'red_button add_to_cart_button']))  }}
+                                {!! Form::close() !!}
                             </div>
                         @endforeach
 

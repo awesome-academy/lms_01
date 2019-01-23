@@ -42,8 +42,8 @@ class Home extends Controller
     public function store(Request $request)
     {
         $keySearch = $request->search;
-        $categories = Category::with('childs')->where('parent_id', '=', 0)->get();
-        $cats = Category::where('parent_id', '!=', 0)->get();
+        $categories = Category::with('childs')->where('parent_id', config('setting.parent_id'))->get();
+        $cats = Category::where('parent_id', '!=', config('setting.parent_id'))->get();
         $getSearch = DB::table('books')->join('authors', 'authors.id', 'books.author_id')
             ->join('publisher', 'publisher.id', 'books.publisher_id')
             ->join('categorys', 'categorys.id', 'books.category_id')
