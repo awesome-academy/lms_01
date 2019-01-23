@@ -14,11 +14,6 @@ class Author extends Model
         'follow',
     ];
 
-    public function follows()
-    {
-        return $this->hasMany('Follow::class');
-    }
-
     public function books()
     {
         return $this->hasMany('Book::class');

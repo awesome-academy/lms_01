@@ -54,7 +54,7 @@
                 <div class="col text-center">
                     <div class="new_arrivals_sorting">
                         <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
+                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">@lang('public.all')</li>
                             @foreach($cats as $cat)
                             <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".{{$cat->id}}">{{$cat->name}}</li>
                             @endforeach
@@ -65,14 +65,12 @@
             <div class="row">
                 <div class="col">
                     <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-
                         @foreach($getSearch as $book)
-
                             <div class="product-item {{$book->category_id}}">
                                 <div class="product discount product_filter">
                                     <div class="product_image">
-                                        <a href="{{ route('detail.show', $book->id) }}" >
-                                            <img class="mystyle" src="/assets/images/{{$book->picture}}" alt="">
+                                        <a href="{{ route('detail.show', $book->id) }}">
+                                            <img class="mystyle" src="/assets/images/{{$book->picture}}" >
                                         </a>
                                     </div>
                                     <div class="product_info">
@@ -83,7 +81,6 @@
                                 <div class="red_button add_to_cart_button"><a href="{{ route('detail.show', $book->id) }}">@lang('public.btn-borrow')</a></div>
                             </div>
                         @endforeach
-
                     </div>
                 </div>
             </div>

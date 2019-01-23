@@ -54,7 +54,7 @@
                 <div class="col text-center">
                     <div class="new_arrivals_sorting">
                         <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">@lang('public.all')</li>
+                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
                             @foreach($cats as $cat)
                             <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".{!! $cat->id !!}">{!! $cat->name !!}</li>
                             @endforeach
@@ -78,12 +78,12 @@
                                     </div>
                                 </div>
                                 @if(Auth::check())
-                                <span id="word{{$book->id}}">
+                                    <span id="word{{$book->id}}">
                                     @if(array_key_exists($book->id, $followBook))
-                                        <div class="fa fa-heart followstyle" onclick="return ajaxToggleWordRemember({{$book->id}})"></div>
-                                    @else
-                                        <div class="fa fa-heart-o followstyle" onclick="return ajaxToggleWordRemember({{$book->id}})"></div>
-                                    @endif
+                                            <div class="fa fa-heart followstyle" onclick="return ajaxToggleWordRemember({{$book->id}})"></div>
+                                        @else
+                                            <div class="fa fa-heart-o followstyle" onclick="return ajaxToggleWordRemember({{$book->id}})"></div>
+                                        @endif
                                 </span>
                                 @else
                                     <span class="saveBook" data-confirm="login before follow">
@@ -91,9 +91,9 @@
                                     </span>
                                 @endif
                                     {!! Form::open(['method'=>'PUT', 'route'=>['cart.update', $book->id], 'class' => 'red_button add_to_cart_button']) !!}
-                                    {!! Form::hidden('book_id', $book->id) !!}
-                                    {!! Form::hidden('_token', csrf_token()) !!}
-                                    {{ Form::submit(trans('public.btn-borrow', ['class' => 'red_button add_to_cart_button']))  }}
+                                        {!! Form::hidden('book_id', $book->id) !!}
+                                        {!! Form::hidden('_token', csrf_token()) !!}
+                                        {{ Form::submit(trans('public.btn-borrow', ['class' => 'red_button add_to_cart_button']))  }}
                                 {!! Form::close() !!}
                             </div>
                         @endforeach

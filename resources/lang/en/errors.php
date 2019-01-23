@@ -19,4 +19,5 @@ return[
     'edit-success' => 'Edit user success',
     'del-fail' => 'Delete user fail',
     'del-success' => 'Delete user success',
+    'ajax-error' => 'Fail',
 ];

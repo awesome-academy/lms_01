@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Colo Shop Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     {{ Html::style(asset('assets/styles/bootstrap4/bootstrap.min.css')) }}
     {{ Html::style(asset('assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css')) }}
     {{ Html::style(asset('assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css')) }}
@@ -55,9 +56,10 @@
                                     <ul class="account_selection">
                                         @if(Auth::check())
                                             <li><a href="#"><i class="fa fa-user"></i>{{ Auth::user()->name }} </a></li>
-                                            <li><a href="{{ route('login.create') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>@lang('public.logout')</a></li>
+                                            <li><a href="{{ route('follow.index') }}"><i class="fa fa-address-book-o" aria-hidden="true"></i>@lang('public.book-follow')</a></li>
+                                            <li><a href="{{ route('login.create') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>@lang('public.logout')</a></li>
                                         @else
-                                            <li><a href="{{ route('login.index') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>@lang('public.login')</a></li>
+                                            <li><a href="{{ route('login.index') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>@lang('public.login')</a></li>
                                         @endif
                                     </ul>
                                 </li>
@@ -100,6 +102,18 @@
                                         <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
                                         {!! Form::text('search', '', ['class' => 'search_input', 'placeholder' => trans('public.search-bar')]) !!}
                                     {!! Form::close() !!}
+                                </li>
+                            </ul>
+                            <ul class="navbar_user">
+                                <li class="checkout">
+                                    <a href="{!! route('cart.create') !!}">
+                                        @if (Cart::count() != config('setting.default'))
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                            <span id="checkout_items" class="checkout_items">{!! Cart::count() !!}</span>
+                                        @else
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        @endif
+                                    </a>
                                 </li>
                             </ul>
                             <div class="hamburger_container">
@@ -267,6 +281,8 @@
 {{ Html::script(asset('assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js')) }}
 {{ Html::script(asset('assets/js/categories_custom.js')) }}
 {{ Html::script(asset('assets/js/single_custom.js')) }}
+{{ Html::script(asset('js/ajax/publicScript.js')) }}
+
 </body>
 
 </html>

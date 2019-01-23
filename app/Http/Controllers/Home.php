@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Follow;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Book;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Home extends Controller
@@ -18,9 +20,10 @@ class Home extends Controller
     {
         $categories = Category::with('childs')->where('parent_id', config('setting.parent_id'))->get();
         $cats = Category::where('parent_id', '!=', config('setting.parent_id'))->get();
-        $books = Book::orderBy('id', 'desc')->get();
+        $followBook = Follow::pluck('id', 'book_id')->toArray();
+        $books = Book::all();
 
-        return view('user.index', compact('categories', 'books', 'cats'));
+        return view('user.index', compact('categories', 'books', 'cats', 'followBook'));
     }
 
     /**
@@ -28,6 +31,50 @@ class Home extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function bookRemember(Request $request)
+    {
+        $saveBook = new Follow;
+        $user_id = Auth::user()->id;
+        $book_id = $request->bookid;
+        $followBook = Follow::pluck('id', 'book_id')->toArray();
+        if (array_key_exists($book_id, $followBook)) {
+            Follow::where([
+                ['user_id', $user_id],
+                ['book_id', $book_id],
+            ])->delete();
+
+            return view('user.ajaxSaveBook', compact('book_id', 'followBook'));
+        } else {
+            $saveBook->user_id = $user_id;
+            $saveBook->book_id = $book_id;
+            $saveBook->save();
+
+            return view('user.ajaxSaveBook', compact('book_id', 'followBook'));
+        }
+    }
+
+    public function bookRememberDetail(Request $request)
+    {
+        $saveBook = new Follow;
+        $user_id = Auth::user()->id;
+        $book_id = $request->bookid;
+        $followBook = Follow::pluck('id', 'book_id')->toArray();
+        if (array_key_exists($book_id, $followBook)) {
+            Follow::where([
+                ['user_id', $user_id],
+                ['book_id', $book_id],
+            ])->delete();
+
+            return view('user.ajaxSaveBookDetail', compact('book_id', 'followBook'));
+        } else {
+            $saveBook->user_id = $user_id;
+            $saveBook->book_id = $book_id;
+            $saveBook->save();
+
+            return view('user.ajaxSaveBookDetail', compact('book_id', 'followBook'));
+        }
+    }
+
     public function create()
     {
         //
