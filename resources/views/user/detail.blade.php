@@ -55,7 +55,8 @@
                             <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                         </ul>
                     </div>
-                    {!! Form::open(['method' => 'POST', 'route' => ['detail.add', $books->id] ]) !!}
+                    {!! Form::open(['method'=>'PUT', 'route'=>['cart.update', $books->id]]) !!}
+                        {!! Form::hidden('book_id', $books->id) !!}
                         {!! Form::submit(trans('public.btn-borrow'), ['class' => 'btn btn-success btn-md']) !!}
                     {!! Form::close() !!}
                 </div>
@@ -68,6 +69,7 @@
                 <h4>@lang('public.lb-comment') ({!! $comments->count() !!})</h4>
             </div>
             @foreach($comments as $comment)
+                @if($comment->status == config('setting.status_1'))
             <div class="user_review_container d-flex flex-column flex-sm-row">
                 <div class="user">
                     <div class="user_pic"></div>
@@ -87,6 +89,7 @@
                     <p>{!! $comment->content !!}</p>
                 </div>
             </div>
+                @endif
                 @endforeach
         </div>
 

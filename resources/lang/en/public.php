@@ -50,7 +50,7 @@ return[
     'lb-day-borrow' => 'Day Borrow',
     'lb-end-borrow' => 'End Day Borrow',
     'btn-borrow' => 'Borrow',
-    'message-borrow-success' => 'Borrow Successfull, Thanks!',
+    'message-borrow-success' => 'Thanks, for your borrows!',
     'message-borrow-fail' => 'Borrow Fail, Sorry!',
     'home' => 'Home',
     'lb-delivery' => 'Free Delivery',
@@ -64,4 +64,9 @@ return[
     'message-comment' => 'Admin will review your comment, Thanks',
     'message-comment-fail' => 'Comment fails',
     'search-bar' => 'Enter to search',
+    'checkout' => 'Check out',
+    'cart-empty' => 'You have no items in the shopping cart',
+    'btn-back' => 'Back Library',
+    'borrow-cart' => 'Borrow Carts',
+    'all' => 'All'
 ];

@@ -39,7 +39,7 @@
                                             <div class="product discount product_filter">
                                                 <div class="product_image">
                                                     <a href="{{ route('detail.show', $book->id) }}">
-                                                        <img class="mystyle" src="/assets/images/{{$book->picture}}" >
+                                                        <img class="mystyle1" src="/assets/images/{{$book->picture}}" >
                                                     </a>
                                                 </div>
                                                 <div class="product_info">

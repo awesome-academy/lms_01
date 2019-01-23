@@ -102,6 +102,18 @@
                                     {!! Form::close() !!}
                                 </li>
                             </ul>
+                            <ul class="navbar_user">
+                                <li class="checkout">
+                                    <a href="{!! route('cart.create') !!}">
+                                        @if (Cart::count() != config('setting.default'))
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                            <span id="checkout_items" class="checkout_items">{!! Cart::count() !!}</span>
+                                        @else
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        @endif
+                                    </a>
+                                </li>
+                            </ul>
                             <div class="hamburger_container">
                                 <i class="fa fa-bars" aria-hidden="true"></i>
                             </div>
